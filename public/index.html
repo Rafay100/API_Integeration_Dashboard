@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Integration Dashboard</title>
+    <meta name="description" content="A polished dashboard for integrating third-party APIs through a secure Express backend proxy." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#">API Integration Dashboard</a>
+      <nav class="nav-links">
+        <a href="#health">Health</a>
+        <a href="#crypto">Crypto</a>
+        <a href="#github">GitHub</a>
+        <a href="#random-user">Users</a>
+      </nav>
+      <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode">☀️</button>
+    </header>
+
+    <main class="container">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Production-ready architecture</p>
+          <h1>Secure API integrations through a clean backend proxy.</h1>
+          <p class="hero-copy">
+            Explore live data from CoinGecko, GitHub, Random User, programming jokes, and quotes in a polished dashboard.
+          </p>
+          <div class="hero-actions">
+            <button id="refreshAll" class="primary-button">Refresh all</button>
+            <button id="retryButton" class="secondary-button">Retry</button>
+          </div>
+        </div>
+        <div class="hero-metric">
+          <div class="stat-pill">
+            <span class="pill-label">Health</span>
+            <strong id="healthStatus">Checking…</strong>
+          </div>
+          <div class="stat-pill">
+            <span class="pill-label">Auto refresh</span>
+            <strong>60s</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="health" class="grid two-col">
+        <article class="card panel">
+          <div class="panel-header">
+            <h2>Health Status</h2>
+            <span id="healthBadge" class="badge loading">Checking</span>
+          </div>
+          <p id="healthMessage" class="muted">Connecting to backend service…</p>
+          <div id="healthLoader" class="loader"></div>
+        </article>
+        <article class="card panel">
+          <div class="panel-header">
+            <h2>API Response Viewer</h2>
+            <button id="copyJson" class="text-button">Copy JSON</button>
+          </div>
+          <pre id="responseViewer" class="response-viewer">{}</pre>
+        </article>
+      </section>
+
+      <section id="crypto" class="card">
+        <div class="panel-header">
+          <h2>Live Crypto Prices</h2>
+          <div class="panel-actions">
+            <input id="searchCrypto" class="search-box" placeholder="Search coins" />
+            <button id="refreshCrypto" class="text-button">Refresh</button>
+          </div>
+        </div>
+        <div id="cryptoGrid" class="crypto-grid"></div>
+      </section>
+
+      <section class="grid two-col">
+        <article id="github" class="card panel">
+          <div class="panel-header">
+            <h2>GitHub Profile Search</h2>
+            <div class="panel-actions">
+              <input id="githubInput" class="search-box" placeholder="octocat" />
+              <button id="searchGithub" class="primary-button small">Search</button>
+            </div>
+          </div>
+          <div id="githubProfile" class="profile-card"></div>
+        </article>
+        <article id="random-user" class="card panel">
+          <div class="panel-header">
+            <h2>Random User Generator</h2>
+            <button id="generateUser" class="primary-button small">Generate</button>
+          </div>
+          <div id="userCard" class="profile-card"></div>
+        </article>
+      </section>
+
+      <section class="grid two-col">
+        <article class="card panel">
+          <div class="panel-header">
+            <h2>Programming Joke</h2>
+            <button id="refreshJoke" class="text-button">New joke</button>
+          </div>
+          <p id="jokeContent" class="quote-text">Loading…</p>
+        </article>
+        <article class="card panel">
+          <div class="panel-header">
+            <h2>Quote of the Day</h2>
+            <button id="refreshQuote" class="text-button">New quote</button>
+          </div>
+          <p id="quoteContent" class="quote-text">Loading…</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="panel-header">
+          <h2>Performance Chart</h2>
+        </div>
+        <canvas id="cryptoChart"></canvas>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built with Express, Chart.js, and vanilla JavaScript.</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
